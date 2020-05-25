@@ -1,0 +1,12 @@
+{% extends 'mytodo/base.html' %}
+
+{% block body %}
+    <h1>He list of my todo</h1>
+<div>
+    {% for record in records %}
+    <h4>{{ record.title }}</h4>
+    <span>&times;</span>
+    {% endfor %}
+
+</div>
+{% endblock %}
