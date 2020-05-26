@@ -2,18 +2,39 @@
 
 {% block body %}
 <!--Form to post data -->
-<form method="POST">
-    {% csrf_token %}
-    <div class="form-group row">
-        {{ form.as_p}}
-        <button type="submit" class="btn btn-green" name="button">Submit</button>
+<div class="container">
+    <div class="row">
+        <div class="col-3">
+        </div>
+
+        <div class="col-6">
+            <form method="POST" class="form-inline">
+                <div class="form-group mb-2"></div>
+                {% csrf_token %}
+                <br><br><br><br><br>
+                <div class="form-group mx-lg-3 mb-2">
+                    {{ form.as_p }}
+                </div>
+                <div style="margin-top: 10px">
+                    <button type="submit" class="btn btn-primary mb-2">Add Task</button>
+                </div>
+            </form>
+
+            <!--List my data-->
+            <div>
+                {% for record in records %}
+                <div style="border: 0.5px solid #f8fbfa; margin: 2px">
+                    <h4 style="padding:10px">{{ record.title }}</h4>
+                    <a style="float: right; padding-right: 25px; padding-top: 20px; font-size: 20px bold; text-decoration: none;
+                    margin-top: -60px;
+                    " href="{% url 'delete_todo' record.pk %}">Delete</a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="col-3">
+        </div>
     </div>
-</form>
-<!--List my data-->
-<div>
-    {% for record in records %}
-    <h4>{{ record.title }}</h4>
-    <a href="{% url 'delete_todo' record.pk %}">&times;</a>
-    {% endfor %}
 </div>
 {% endblock %}
